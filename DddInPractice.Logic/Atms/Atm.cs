@@ -35,13 +35,13 @@ namespace DddInPractice.Logic.Atms
             Money output = MoneyInside.Allocate(amount);
             MoneyInside -= output;
 
-            decimal amountWithCommission = CaluculateAmountWithCommission(amount);
+            decimal amountWithCommission = CalculateAmountWithCommission(amount);
             MoneyCharged += amountWithCommission;
 
             AddDomainEvent(new BalanceChangedEvent(amountWithCommission));
         }
 
-        public virtual decimal CaluculateAmountWithCommission(decimal amount)
+        public virtual decimal CalculateAmountWithCommission(decimal amount)
         {
             decimal commission = amount * CommissionRate;
             decimal lessThanCent = commission % 0.01m;
